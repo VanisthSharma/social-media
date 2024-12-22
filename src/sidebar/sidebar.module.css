@@ -1,0 +1,53 @@
+.mainContainer {
+  position: relative;
+  background-color: #030b16;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  h2 {
+    text-align: center;
+    color: white;
+    margin: 0 1rem 0.5rem 1rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
+}
+.long {
+  width: 14rem;
+}
+.short {
+  width: 4rem;
+  .icon {
+    margin: 1rem 0 0 0.5rem;
+  }
+}
+.h2 {
+  &:hover {
+    border-radius: 0.5rem;
+    background-color: #071930;
+  }
+}
+.icon {
+  color: white;
+  font-size: 2rem;
+  margin: 1rem 0 0 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  align-self: flex-start;
+  &:hover {
+    border-radius: 0.5rem;
+    background-color: #071930;
+  }
+}
+.create {
+  position: absolute;
+  bottom: 0;
+  background-color: #0f0;
+  border-radius: 0.5rem;
+  &:hover {
+    background-color: green;
+  }
+}

@@ -1,0 +1,12 @@
+.dashContainer {
+  margin: 1rem 0 0 2rem;
+}
+.totalContainer {
+  background-color: #121212;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem 1rem 2rem;
+  h2 {
+    margin: 1rem 0 1rem 0;
+  }
+}
