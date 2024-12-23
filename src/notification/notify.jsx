@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { PostContext } from "../store/post-context";
 
 export default function Notification() {
-  const { posts, loading } = useContext(PostContext);
+  const { posts } = useContext(PostContext);
   const [className, setClassName] = useState("");
   const [className2, setClassName2] = useState("");
   useEffect(() => {
@@ -25,12 +25,10 @@ export default function Notification() {
 
   return (
     <>
-      {!loading && (
-        <div className={className}>
-          <h2>Successful!</h2>
-          <div className={className2}></div>
-        </div>
-      )}
+      <div className={className}>
+        <h2>Successful!</h2>
+        <div className={className2}></div>
+      </div>
     </>
   );
 }
