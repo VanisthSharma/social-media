@@ -7,15 +7,14 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { useContext } from "react";
 import { PostContext } from "../store/post-context";
 export default function Sidebar() {
-  const { displayMenuFunc } = useContext(PostContext);
-  const { icon, longShort } = useContext(PostContext);
+  const { icon, longShort, displayMenuFunc } = useContext(PostContext);
   return (
     <div
       className={`${css.mainContainer} ${
         icon === "Hamburger" ? css.long : css.short
       }`}
     >
-      {icon === "Hamburger" ? (
+      {window.innerWidth <= 425 ? null : icon === "Hamburger" ? (
         <IoCloseSharp className={css.icon} onClick={longShort} />
       ) : (
         <GiHamburgerMenu className={css.icon} onClick={longShort} />

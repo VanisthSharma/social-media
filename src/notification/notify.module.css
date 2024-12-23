@@ -15,8 +15,10 @@
   h2 {
     padding: 0.5rem;
   }
+  display: none;
 }
 .AniNotif {
+  display: block;
   animation: notification 5s ease-in-out;
 }
 .Anigreenbar {

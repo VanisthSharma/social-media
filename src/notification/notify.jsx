@@ -3,10 +3,9 @@ import { useContext, useState, useEffect } from "react";
 import { PostContext } from "../store/post-context";
 
 export default function Notification() {
-  const { posts } = useContext(PostContext);
+  const { posts, loading } = useContext(PostContext);
   const [className, setClassName] = useState("");
   const [className2, setClassName2] = useState("");
-
   useEffect(() => {
     setClassName(css.notifyContainer);
     setClassName2(css.greenbar);
@@ -25,9 +24,13 @@ export default function Notification() {
   }, [posts.length]);
 
   return (
-    <div className={className}>
-      <h2>Post added successfully!</h2>
-      <div className={className2}></div>
-    </div>
+    <>
+      {!loading && (
+        <div className={className}>
+          <h2>Successful!</h2>
+          <div className={className2}></div>
+        </div>
+      )}
+    </>
   );
 }

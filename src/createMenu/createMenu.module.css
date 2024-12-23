@@ -43,7 +43,20 @@
     background-color: #121212;
     width: 20rem;
     border: 1px solid black;
-    height: 20rem;
+    height: 10rem;
+    resize: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  input {
+    color: white;
+    border-radius: 1rem;
+    background-color: #121212;
+    width: 20rem;
+    height: 2rem;
     resize: none;
     padding: 1rem;
     font-size: 1.25rem;
@@ -62,6 +75,66 @@
     background-color: #0f0;
     &:hover {
       background-color: green;
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .createContainer {
+    height: 30rem;
+    width: 20rem;
+    h1 {
+      font-size: 1.5rem;
+    }
+    input {
+      font-size: 1rem;
+      width: 15rem;
+    }
+    textarea {
+      font-size: 1rem;
+      width: 15rem;
+      height: 10rem;
+    }
+    button {
+      font-size: 1rem;
+      width: 5rem;
+      height: 2rem;
+    }
+    h1,
+    button {
+      margin-left: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .createContainer {
+    height: 25rem;
+    width: 18rem;
+    .close {
+      font-size: 1rem;
+    }
+    h1 {
+      font-size: 1.3rem;
+    }
+    input {
+      font-size: 0.8rem;
+      width: 12rem;
+      height: 1rem;
+      padding: 0.8rem;
+    }
+    textarea {
+      padding: 0.8rem;
+      font-size: 1rem;
+      width: 12rem;
+      height: 8rem;
+    }
+    button {
+      font-size: 1rem;
+      width: 5rem;
+      height: 2rem;
+    }
+    h1,
+    button {
+      margin-left: 2.5rem;
     }
   }
 }
