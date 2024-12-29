@@ -6,8 +6,9 @@ import { IoMdAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { useContext } from "react";
 import { PostContext } from "../store/post-context";
+import { Link } from "react-router-dom";
 export default function Sidebar() {
-  const { icon, longShort, displayMenuFunc } = useContext(PostContext);
+  const { icon, longShort } = useContext(PostContext);
   return (
     <div
       className={`${css.mainContainer} ${
@@ -21,33 +22,33 @@ export default function Sidebar() {
       )}
 
       {icon === "Hamburger" ? (
-        <h2 onClick={() => displayMenuFunc("DashBoard")} className={css.h2}>
+        <Link to="/dashboard" className={css.h2}>
           DashBoard
-        </h2>
+        </Link>
       ) : (
-        <h2 onClick={() => displayMenuFunc("DashBoard")} className={css.h2}>
+        <Link to="/dashboard" className={css.h2}>
           <MdSpaceDashboard />
-        </h2>
+        </Link>
       )}
 
       {icon === "Hamburger" ? (
-        <h2 onClick={() => displayMenuFunc("View")} className={css.h2}>
+        <Link to="/posts" className={css.h2}>
           View Posts
-        </h2>
+        </Link>
       ) : (
-        <h2 onClick={() => displayMenuFunc("View")} className={css.h2}>
+        <Link to="/posts" className={css.h2}>
           <HiOutlineEye />
-        </h2>
+        </Link>
       )}
 
       {icon === "Hamburger" ? (
-        <h2 onClick={() => displayMenuFunc("Create")} className={css.create}>
+        <Link to="/create" className={css.create}>
           Create Post
-        </h2>
+        </Link>
       ) : (
-        <h2 onClick={() => displayMenuFunc("Create")} className={css.create}>
+        <Link to="/create" className={css.create}>
           <IoMdAdd />
-        </h2>
+        </Link>
       )}
     </div>
   );

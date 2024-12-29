@@ -1,15 +1,11 @@
-import { useReducer, useRef, useEffect } from "react";
+import { useReducer, useRef, useEffect, useCallback } from "react";
 import { createContext } from "react";
 export const PostContext = createContext([]);
-function reduceHamburger(_, action) {
+const reduceHamburger = (_, action) => {
   return action.payload.new;
-}
-function reduceMenu(_, action) {
-  if (action.type === "CHANGE") {
-    return action.payload.displayMenu;
-  }
-}
-function reducePosts(state, action) {
+};
+
+const reducePosts = (state, action) => {
   if (action.type === "ADD") {
     state = [
       {
@@ -23,13 +19,12 @@ function reducePosts(state, action) {
   } else if (action.type === "DELETE") {
     return state.filter((_, idx) => idx !== action.payload.idx);
   }
-}
+};
 //eslint-disable-next-line react/prop-types
 export function PostContextProvider({ children }) {
   const titleInp = useRef("");
   const postInput = useRef("");
   const tagsInp = useRef("");
-  const [displayMenu, dispatchDisplayMenu] = useReducer(reduceMenu, "View");
   const [icon, dispatchIcon] = useReducer(
     reduceHamburger,
     window.innerWidth <= 425 ? "Cross" : "Hamburger"
@@ -47,15 +42,10 @@ export function PostContextProvider({ children }) {
             payload: { body: post.body, title: post.title, tags: post.tags },
           });
         });
-      })
-      .catch((error) => {
-        if (error.name !== "AbortError") {
-          console.error("Fetch error:", error);
-        }
       });
     return () => controller.abort();
   }, []);
-  const addPosts = () => {
+  const addPosts = useCallback(() => {
     disatchPosts({
       type: "ADD",
       payload: {
@@ -64,22 +54,19 @@ export function PostContextProvider({ children }) {
         tags: tagsInp.current.value.trim().split(" "),
       },
     });
-  };
-  const deletePosts = (idx) => {
-    disatchPosts({
-      type: "DELETE",
-      payload: {
-        idx,
-      },
-    });
-  };
+  }, [disatchPosts]);
+  const deletePosts = useCallback(
+    (idx) => {
+      disatchPosts({
+        type: "DELETE",
+        payload: {
+          idx,
+        },
+      });
+    },
+    [disatchPosts]
+  );
 
-  const displayMenuFunc = (i) => {
-    dispatchDisplayMenu({
-      type: "CHANGE",
-      payload: { displayMenu: i },
-    });
-  };
   const longShort = () => {
     icon === "Hamburger"
       ? dispatchIcon({
@@ -100,8 +87,6 @@ export function PostContextProvider({ children }) {
       value={{
         icon,
         longShort,
-        displayMenu,
-        displayMenuFunc,
         postInput,
         posts,
         addPosts,

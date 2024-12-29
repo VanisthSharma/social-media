@@ -1,13 +1,9 @@
-import CreateMenu from "./createMenu/createMenu";
-import Sidebar from "./sidebar/sidebar";
+import { Outlet } from "react-router-dom";
 import Container from "./Container";
-import Notification from "./notification/notify";
 export default function BodyItems() {
   return (
     <Container>
-      <Sidebar />
-      <CreateMenu />
-      <Notification />
+      <Outlet />
     </Container>
   );
 }

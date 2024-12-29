@@ -2,17 +2,18 @@ import { useContext } from "react";
 import css from "./createMenu.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 import { PostContext } from "../store/post-context";
+import { Link } from "react-router-dom";
 export default function MenuItems() {
-  const { displayMenuFunc, postInput, addPosts, tagsInp, titleInp } =
-    useContext(PostContext);
+  const { postInput, addPosts, tagsInp, titleInp } = useContext(PostContext);
   return (
     <>
-      <div className={css.blur} onClick={() => displayMenuFunc("View")}></div>
+      <div className={css.blur}>
+        <Link to="/posts"></Link>
+      </div>
       <div className={css.createContainer}>
-        <IoCloseSharp
-          onClick={() => displayMenuFunc("View")}
-          className={css.close}
-        />
+        <Link to="/posts">
+          <IoCloseSharp className={css.close} />
+        </Link>
         <h1>Create a new Post!</h1>
         <input type="text" maxLength={50} ref={titleInp} placeholder="Title" />
         <textarea
@@ -24,10 +25,9 @@ export default function MenuItems() {
         <button
           onClick={() => {
             addPosts();
-            displayMenuFunc("View");
           }}
         >
-          Publish
+          <Link to="/posts">Publish</Link>
         </button>
       </div>
     </>
