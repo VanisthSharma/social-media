@@ -1,10 +1,24 @@
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import css from "./createMenu.module.css";
 import { IoCloseSharp } from "react-icons/io5";
 import { PostContext } from "../store/post-context";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 export default function MenuItems() {
-  const { postInput, addPosts, tagsInp, titleInp } = useContext(PostContext);
+  const { postInput, tagsInp, titleInp } = useContext(PostContext);
+  const dispatchPosts = useDispatch();
+
+  const addPosts = useCallback(() => {
+    dispatchPosts({
+      type: "ADD_POST",
+      payload: {
+        body: postInput.current.value,
+        title: titleInp.current.value,
+        tags: tagsInp.current.value.trim().split(" "),
+      },
+    });
+  }, [dispatchPosts, postInput, tagsInp, titleInp]);
+
   return (
     <>
       <div className={css.blur}>

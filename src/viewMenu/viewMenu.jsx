@@ -1,11 +1,23 @@
-import { useContext } from "react";
-import { PostContext } from "../store/post-context";
+import { useCallback } from "react";
 import { MdDelete } from "react-icons/md";
 import css from "./viewMenu.module.css";
-
+import { useDispatch, useSelector } from "react-redux";
 export default function ViewMenu() {
-  const { posts, deletePosts } = useContext(PostContext);
+  const dispatchPosts = useDispatch();
 
+  const posts = useSelector((store) => store.posts);
+
+  const deletePosts = useCallback(
+    (idx) => {
+      dispatchPosts({
+        type: "DELETE_POST",
+        payload: {
+          idx,
+        },
+      });
+    },
+    [dispatchPosts]
+  );
   return (
     <div className={css.viewContainer}>
       <h1>Posts</h1>

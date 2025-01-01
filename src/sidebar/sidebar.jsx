@@ -4,11 +4,27 @@ import { IoCloseSharp } from "react-icons/io5";
 import { HiOutlineEye } from "react-icons/hi";
 import { IoMdAdd } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
-import { useContext } from "react";
-import { PostContext } from "../store/post-context";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 export default function Sidebar() {
-  const { icon, longShort } = useContext(PostContext);
+  const dispatchIcon = useDispatch();
+  const icon = useSelector((store) => store.icon);
+  const longShort = () => {
+    icon === "Hamburger"
+      ? dispatchIcon({
+          type: "Shorten",
+          payload: {
+            new: "Cross",
+          },
+        })
+      : dispatchIcon({
+          type: "Widen",
+          payload: {
+            new: "Hamburger",
+          },
+        });
+  };
+
   return (
     <div
       className={`${css.mainContainer} ${

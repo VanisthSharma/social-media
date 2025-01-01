@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { PostContext } from "../store/post-context";
+import { useSelector } from "react-redux";
 import css from "./dashboard.module.css";
 export default function Dashboard() {
-  const { posts } = useContext(PostContext);
+  const posts = useSelector((store) => store.posts);
   return (
     <div className={css.dashContainer}>
       <h1>Dashboard</h1>

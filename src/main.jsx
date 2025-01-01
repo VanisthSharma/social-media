@@ -7,6 +7,8 @@ import Dashboard from "./dashboard/Dashboard.jsx";
 import BodyItems from "./BodyItems.jsx";
 import App from "./App.jsx";
 import MenuItems from "./createMenu/menuItems.jsx";
+import { Provider } from "react-redux";
+import PostStore from "./store/postsStore.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={PostStore}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
