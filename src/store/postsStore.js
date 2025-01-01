@@ -2,7 +2,7 @@ import { createStore } from "redux";
 
 let INITIAL_VAL = {
   posts: [],
-  icon: "Hamburger",
+  icon: window.innerWidth <= 425 ? "Cross" : "Hamburger",
 };
 
 const postReducer = (state = INITIAL_VAL, action) => {
